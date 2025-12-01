@@ -1,0 +1,293 @@
+\documentclass[11pt]{article}
+\usepackage{url,amsmath,setspace,amssymb,fullpage}
+
+\newcommand{\heading}[5]{
+   \renewcommand{\thepage}{#1-\arabic{page}}
+   \noindent
+   \begin{center}
+   \framebox[\textwidth]{
+     \begin{minipage}{0.9\textwidth} \onehalfspacing
+       {\bf Introduction to Cryptography} \hfill #2
+
+       {\centering \Large #5
+
+       }\medskip
+
+       {\it #3 \hfill #4}
+     \end{minipage}
+   }
+   \end{center}
+}
+
+\newcommand{\scribe}[4]{\heading{#1}{#2}{Instructor:
+Vipul Goyal}{Scribe: #4}{Lecture #1: #3}}
+
+%\setlength{\parindent}{0in}
+
+\newcommand{\proof}{{\bf Proof. }} %% To begin a proof write \proof
+\newcommand{\qed}{\mbox{}\hspace*{\fill}\nolinebreak\mbox{$\rule{0.6em}{0.6em}$}} %%to end your proof write $\qed$.
+\newcommand{\ma}{{\mathcal A}}
+\newtheorem{lemma}{Lemma}
+\newtheorem{fact}{Fact}
+\newtheorem{theorem}[lemma]{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{assumption}{Assumption}
+\bibliographystyle{plain}
+
+% macros
+\newcommand{\Adv}{A}
+\newcommand{\Gq}{G_q}
+\newcommand{\Int}{\mathbb{Z}}
+\newcommand{\IntQ}{\Int_q}
+\newcommand{\IntSN}{\Int^*_N}
+\newcommand{\IntSPN}{\Int^*_{\Phi(N)}}
+\newcommand{\getsR}{\stackrel{\$}{\gets}}
+\DeclareMathOperator{\negl}{negl}
+\DeclareMathOperator{\ModOp}{mod}
+\newcommand{\Mod}{\;\ModOp\;}
+\newcommand{\Bit}{{\{0,1\}}}
+
+\begin{document}
+\scribe{12}{02/22/2018}{Key Agreement}{Francisco Maturana}
+
+\section{Hardness Assumptions}
+
+In order to prove the security of cryptographic primitives, we need to be able to show that certain problems cannot be solved efficiently.
+This, however, has proven to be a very difficult task, so we often have to rely on hardness assumptions for our proofs of security.
+These assumptions are based on longstanding problems for which no efficient algorithms are known, and are therefore widely believed to be hard.
+
+\begin{assumption}[Discrete Log Assumption (DL)]
+Let $\Gq$ be an order $q$ multiplicative group, where $q$ is a prime, and let $g \in \Gq$ be a generator.
+Then, for all PPT adversary $\Adv$:
+\[
+  \Pr[x \getsR \IntQ : \Adv(g^x) = x ] \leq \negl(|q|)
+\]
+\end{assumption}
+We can construct a one-to-one OWF $f_g : \IntQ \to \Gq$ based on the DL assumption:
+\[
+  f_g(x) = g^x
+\]
+\begin{lemma}
+  The function $f_g$ is a one-to-one OWF.
+\end{lemma}
+
+\proof
+First we show that $f_g$ is one-to-one.
+Since $g$ is a generator, and $\Gq$ is of order $q$ it must be the case that for all $x,y \in \IntQ$ such that $x \neq y$, $g^x \neq g^y$, or otherwise $g$ would not be able to generate all the elements of $\Gq$.
+Then, if $x,y \in \IntQ$ are such that $f_g(x) = f_g(y)$, we must have that $x = y$.
+
+The function $f_g$ can be efficiently computed by using \emph{exponentiation by squaring}.
+This will take $O(\log |\IntQ|) = O(|q|)$ group operations in the worst case.
+
+Finally, $f_g$ is hard to invert as a direct consequence of the DL assumption.
+\qed
+
+Given that we typically work with bit-strings instead of prime order groups, it would be useful to adapt $f_g$ to work in the more familiar setting.
+We can construct a one-to-one OWF that takes bit strings as input by making use of the following lemma.
+\begin{lemma}
+  Let $f : \IntQ \to \Gq$ be a function, let $n$ be such that $2^n \leq q < 2^{n + 1}$, let $m$ be such that $2^m \geq |\Gq|$, and let $f': \Bit^n \to \Bit^m$ be such that:
+  \[
+    f'(x) = f(x)\quad \text{ for all } x \in \Bit^n
+  \]
+  where $x \in \Bit^n$ and $f(x) \in \Gq$ are respectively mapped to elements of $\IntQ$ and $\Bit^m$ in the trivial way.
+  If $f$ is a OWF, then $f'$ is a OWF.
+\end{lemma}
+
+\proof
+Suppose, towards contradiction, that there is an adversary $\Adv$ that can invert $f'$ with noticeable probability $p$.
+Consider the adversary $\Adv'$ that attempts to invert $f$ as follows: on input $Y \in \Gq$, $\Adv'$ converts $Y$ to an element $y \in \Bit^m$ and outputs $\Adv(y)$.
+
+Given our choice of $n$, all the elements in $\Bit^n$ have a corresponding element in $\IntQ$, and at least one half of the elements in $\IntQ$ have a corresponding element in $\Bit^n$.
+This means that an element $X \in \IntQ$ chosen at random will have a corresponding element $x \in \Bit^n$ with probability at least $1/2$.
+The probability that $\Adv'$ succeeds given that such an $x$ exists, is exactly $p$.
+Therefore, the overall probability that $\Adv'$ succeeds is at least $p/2$, which is noticeable.
+
+It is also worth noting that if $f$ is one-to-one, then $f'$ is also one-to-one, since the mappings $\Bit^n \to \IntQ$ and $\Gq \to \Bit^m$ are one-to-one.
+\qed
+
+
+\begin{assumption}[Computational Diffie-Hellman Assumption (CDH)]
+  Let $\Gq$ be a prime-order multiplicative group and let $g \in \Gq$ be a generator.
+  Choose $x,y$ uniformly at random from $\IntQ$.
+  Let $X = g^x$ and $Y = g^y$.
+  Then, for all PPT adversary $\Adv$:
+  \[
+    \Pr[A(g, X, Y) = g^{xy}] \leq \negl(|q|)
+  \]
+\end{assumption}
+
+Notice that this is a potentially stronger assumption than DL, since if we are able to solve DL efficiently, we are also able to solve CDH efficiently.
+
+\begin{assumption}[Desicional Diffie-Hellman Assumption (DDH)]
+  Let $\Gq, g, X, Y$ be defined as before.
+  Let $Z = g^{xy}$ and $R \getsR \Gq$.
+  Then, for all PPT adversary $\Adv$:
+  \[
+    \left|\Pr[A(g,X,Y,Z) = 0] - \Pr[A(g,X,Y,R) = 0]\right| \leq \negl(|q|)
+  \]
+\end{assumption}
+
+Notice that this assumption is potentially stronger than CDH.
+Clearly, if we are able to compute $g^{xy}$ efficiently, then we can just compute it and check if $Z = g^{xy}$.
+
+The tuples $(g^x, g^y, g^{xy})$ are sometimes called DDH triplets or DDH tuples in the literature.
+
+\subsection{RSA assumption/function}
+
+Let $N = pq$ where $p$ and $q$ are distinct primes.
+Then, as we previously mentioned:
+\[
+  |\IntSN| = \Phi(N) = (p - 1)(q - 1)
+\]
+Choose an $e \in \{1,2,\ldots,\Phi(N) - 1\}$ such that $e$ is relatively prime to $\Phi(N)$.
+Compute $d$ such that $ed = 1 \Mod \Phi(N)$ ($d$ must exist since $e$ is relatively prime to $\Phi(N)$).
+We call the following function the \textbf{RSA function}:
+\[
+  f_{N,e}(x) = x^e \Mod N
+\]
+
+The RSA assumption states that given $e$ and $N$, it is hard to compute $e$-th roots.
+More formally:
+\begin{assumption}[RSA assumption]
+  Let $\Pi_n$ be the set of primes of length $n$.
+  Then:
+  \[
+    \Pr\left[
+      \begin{array}{c}
+        p,q \gets \Pi_n,\, p \neq q,\, N = pq,\\
+        e \gets \IntSPN,\, x \gets \IntSN
+      \end{array}
+      :
+      A(x^e \Mod N) = x
+    \right]
+    \leq \negl(n)
+  \]
+\end{assumption}
+
+One key property of the RSA assumption is that when we know $d$ it becomes very easy to invert.
+
+\paragraph{Inverting RSA}
+Given $x^e \Mod N$ we can compute:
+\[
+  x^{ed} \Mod N = x^{ed \Mod \Phi(N)} \Mod N =  x^{1 \Mod \Phi(N)} \Mod N = x \Mod N = x
+\]
+Given $\Phi(N)$, it is easy to compute $d$ from $e$ by using the extended euclidean algorithm.
+Therefore, RSA becomes easy to invert on we know $\Phi(N)$.
+Computing $\Phi(N)$ in this case, however, is believed to be hard.
+
+One way in which we may compute $\Phi(N)$ is by factorizing $N$ into $p$ and $q$, and then computing $(p - 1)(q - 1)$.
+This means that factoring being hard is a necessary condition for the RSA assumption to hold.
+It is not known if this is a sufficient condition, however, since there might be other ways of computing $\Phi(N)$ that do not involve factoring.
+
+The RSA assumption, however, implies that the RSA function is hard to invert when we have no additional information.
+
+\begin{lemma}
+  The RSA function is a OWP under the RSA assumption.
+\end{lemma}
+
+\proof
+First we show that it is a permutation.
+Suppose there are two preimages $x, y \in \IntSN$ mapping to the same image.
+Then:
+\begin{align*}
+  x^e &= y^e \mod N\\
+  (x^e)^d &= (y^e)^d \mod N\\
+  x^{1 \Mod \Phi(N)} &= y^{1 \Mod \Phi(N)} \mod N\\
+  x &= y \mod N
+\end{align*}
+Since the domain and codomain of the function are the same, we deduce that it is a permutation.
+
+We can efficiently compute the RSA function by using \emph{exponentiation by squaring}.
+This will take $O(\log|\IntSPN|)$ group operations.
+
+Finally, the fact that the RSA function is hard to invert follows directly from the RSA assumption.
+\qed
+
+RSA is often presented as an asymmetric encryption scheme, where the RSA function with the \emph{public key} $e$ is used to encrypt messages and the RSA function with the \emph{private key} $d$ is used to decrypt them.
+It is worth noting, however, that RSA is \textbf{not} a secure encryption scheme, since it is deterministic.
+As shown in a previous lecture, no deterministic encryption scheme is secure for multiple messages.
+
+\subsection{Learning with Errors (LWE)}
+
+Consider the following problem.
+Let $x = (x_1, x_2, \ldots, x_n)$ where $x_i \in \IntQ$ for all $i \in [n]$.
+Given several equations:
+\begin{align*}
+  a_{11} x_1 + a_{12} x_2 + \cdots + a_{1n} x_n &= b_1 \mod q\\
+  a_{21} x_1 + a_{22} x_2 + \cdots + a_{2n} x_n &= b_2 \mod q\\
+  \vdots & \\
+\end{align*}
+The goal is to find an $x$ satisfying the system of equations.
+This is a classical problem easily solved using Gaussian elimination.
+
+LWE introduces the following variation.
+We are given noisy version $\tilde{b}_1, \tilde{b}_2, \ldots, \tilde{b}_n$ of $b_1, b_2, \ldots, b_n$ such that:
+\[
+  \tilde{b}_i = b_i + e_i \quad \text{ for all } i \in [n]
+\]
+where $e_i$ is noise sampled from a given distribution.
+
+\begin{assumption}[Learning with Errors (LWE)]
+  For all PPT adversary $\Adv$:
+  \[
+    \Pr[A(a_{11}, a_{12}, \ldots, \tilde{b}_1, \tilde{b}_2, \ldots) = x] \leq \negl(n)
+  \]
+\end{assumption}
+
+LWE is believed to be hard when noise is sampled from a normal distribution with certain standard deviations.
+
+This assumption is often used in lattice-based cryptography.
+
+\section{Diffie-Hellman Key Exchange}
+
+A key exchange protocol (KEP) allows two PPT parties---say Alice and Bob having randomness $r_A, r_B$ respectively---to interact with each other.
+Let $\tau$ be the public transcript at the end of the protocol.
+The view of Alice is $V_A = (r_A, \tau)$ and the view of Bob is $V_B = (r_B, \tau)$.
+Given $V_A$ and $V_B$, Alice and Bob can compute $k_A$ and $k_B$ respectively.
+If $k_A = k_B$, denote them by $k$.
+
+\begin{itemize}
+  \item \textbf{Correctness}: the protocol is correct if:
+    \[
+      \Pr_{r_A,r_B}[k_A = k_B] = 1
+    \]
+  \item \textbf{Security}:
+    Consider PPT Eve (denoted by $E$) eavesdropping the communication channel.
+    The view of Eve is $\tau$.
+    Let $k$ be the key and let $U_n \getsR \Bit^n$.
+    The protocol is secure if:
+    \[
+      |\Pr[E(\tau,k) = 0] - \Pr[E(\tau, U_n) = 0]| \leq \negl(n)
+    \]
+    where the probability is taken with respect to the coins of the entire experiment ($U_n$ and the randomness of Alice, Bob, and Eve).
+\end{itemize}
+
+\subsection{DH key exchange protocol}
+Let $\Gq$ be a multiplicative group of prime order $q$, and let $g \in \Gq$ be a generator.
+The protocol is the following:
+\begin{enumerate}
+  \item $A$ picks $x \getsR \IntQ$, computes $X = g^x$, and sends $X$ to $B$;
+  \item $B$ picks $y \getsR \IntQ$, computes $Y = g^y$, and sends $Y$ to $A$;
+  \item $A$ computes $k_A = Y^x = (g^y)^x = g^{xy}$;
+  \item $B$ computes $k_B = X^y = (g^x)^y = g^{xy}$.
+\end{enumerate}
+This protocol satisfies the definition of a KEP.
+
+\begin{itemize}
+  \item \textbf{Correctness}: clear from the protocol.
+  \item \textbf{Security}: Eve is given $X = g^x$, $Y = g^y$, and has to distinguish $k = g^{xy}$ from a uniformly random $U_n$.
+    Suppose Eve can distinguish them: then we can construct an algorithm $B$ that can solve the DDH problem.
+\end{itemize}
+
+\subsection{Active adversaries}
+
+Notice that throughout this section, we assumed that Eve can only observe messages, but not modify or interfere with them in any way.
+Suppose that we allow Eve to modify messages.
+Since Alice and Bob have no way of telling who they are interacting with, Eve can perform the KEP with Alice and Bob separately and then mediate the conversation between them.
+Alice and Bob will think that they are interacting with each other, but Eve can read (and modify) all of their messages.
+This is what is typically called a \emph{man-in-the-middle attack} (MITM).
+
+
+\end{document}

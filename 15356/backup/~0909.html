@@ -1,0 +1,240 @@
+<style>
+body, body table {
+  font-size: 1.2rem;
+  padding: 5%;
+}
+table {
+  border-collapse: collapse;
+}
+ th, td {
+  border-bottom: 1px solid #ddd;
+  padding: 5px 10px;
+}
+</style>
+<h1><strong>[Fall 2020] 15356/15856:&nbsp;&nbsp;Introduction to Cryptography</strong></h1>
+<p>&nbsp;</p>
+<p><strong>Important Note regard Change in Course Numbers:&nbsp;</strong>This course used to be 15503/15827. The course numbers have changed (however the content would remain the same). This course would still satisfy all requirements which 15503/15827 used to (e.g., for security and theory concentrations).</p>
+<p>&nbsp;</p>
+<table>
+<tr>
+<td><strong>Instructor</strong></td>
+<td><a href="http://www.cs.cmu.edu/~goyal/">Vipul Goyal</a> &lt;Vipul at cmu.edu&gt;<br><strong>Important</strong>: Please CC the TAs on ALL emails</td>
+</tr>
+<tr>
+<td><strong>Time</strong></td>
+<td>MW 1:30pm &ndash; 2:50pm</td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td>CMU Remote (Zoom)</td>
+</tr>
+<tr>
+<td><strong>TAs</strong></td>
+<td>Lisa&nbsp;Masserova &lt;elisawem@andrew.cmu.edu&gt;,<br>Fei&nbsp;Peng &lt;fpeng1@andrew.cmu.edu&gt;</td>
+</tr>
+<tr>
+<td><strong>Office Hours</strong></td>
+<td>TA: TBA<br>Instructor: Monday 3pm to 4pm</td>
+</tr>
+</table>
+<p>&nbsp;</p>
+<p style="color: red;"><strong>NOTE: please join the class on piazza. Here is a&nbsp;<a href="https://piazza.com/class/ked704xd5lz6lo">direct link</a>. All further course material and updates will only be posted on piazza.</strong></p>
+<p>&nbsp;</p>
+<p><strong>Prerequisites</strong></p>
+<p>This is an introduction to cryptography course. The course is open to graduate and undergraduate students. It is cross-listed with 15-856. This is the website for both the course sections. The course does not assume any prior background in cryptography or computer security. However a basic level of mathematical maturity is expected. It is recommended that you must have taken a course either in: algorithms or theoretical computer science (such as 15-251) or probability/discrete math (such as 21-228).</p>
+<p>Currently the prerequisites for this course are 15-251 (OR) 21-228. However if you haven&rsquo;t taken either of these course but you still believe you can handle the material (e.g., because you did very well in 15-151 or you have special interest in Crypto), please enroll in the waitlist and send the instructor an email.</p>
+<p>&nbsp;</p>
+<p><strong>Grading Policy</strong></p>
+<p>Grading policy for both the sections is the same:</p>
+<p>5&nbsp;Homeworks: 10% each<br>Midterm (in class): 25%<br>Final (take home): 25%<br>Class participation and attendance: extra credits (up to 5%)<br>Improve lecture notes: extra credits (up to 10%)</p>
+<p>&nbsp;</p>
+<p><strong>Exams</strong></p>
+<p>2 hour in class midterm: 10/26/2020 covering material&nbsp;up to&nbsp;10/14/2020 (Tentative Time: 1:30pm to 3:30pm)</p>
+<p>Final Exam (take home): 12/14/2020 noon to 12/15/2020 midnight (36 hours given to accommodate other finals)</p>
+<p>&nbsp;</p>
+<p><strong>Tentative List of Lectures</strong></p>
+<table width="100%" id="leclist">
+<tr>
+<td><strong>Date</strong></td>
+<td><strong>Topic</strong></td>
+<td><strong>Description</strong></td>
+<td><strong>Relevant Reading</strong></td>
+</tr>
+<tr>
+<td>09/02/2020</td>
+<td>Introduction</td>
+<td>Course focus, prerequisites, what will be covered, what is expected</td>
+<td>Lecture notes coming soon</td>
+</tr>
+<tr>
+<td>09/09/2020</td>
+<td>Classical Ciphers and Perfect Secrecy</td>
+<td>Classical ciphers and why they were all broken, one-time pad, moving to modern cryptography based on hard problems like factoring</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>09/14/2020</td>
+<td>One Way Functions</td>
+<td>Definitions, motivation, candidate constructions</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>09/16/2020</td>
+<td>Pseudorandomness&nbsp;&ndash; I</td>
+<td>Pseudorandom generators (PRG), computational indistinguishability</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>09/21/2020</td>
+<td>Pseudorandomness&nbsp;&ndash; II</td>
+<td>Constructing PRGs, Hybrid arguments</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>09/23/2020</td>
+<td>Pseudorandomness&nbsp;&ndash; III</td>
+<td>Pseudorandom functions (PRF), constructions</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>09/28/2020</td>
+<td>Secret-Key Encryption</td>
+<td>Defining encryption, why all deterministic encryption schemes are insecure, construction using PRF, a warning regarding mauling attacks</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>09/30/2020</td>
+<td>Number theory and hardness assumptions</td>
+<td>Groups, Euler&rsquo;s function, discrete log problem, RSA function</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>10/05/2020</td>
+<td>Key Agreement</td>
+<td>Diffie-Hellman Key exchange, proof of security</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>10/07/2020</td>
+<td>Public-Key Encryption &ndash; I</td>
+<td>Definition, trapdoor permutations, RSA based construction</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>10/12/2020</td>
+<td>Public-Key Encryption &ndash; II</td>
+<td>El-Gamal encryption, others</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>10/14/2020</td>
+<td>MAC and Hash Functions</td>
+<td>Message Authentication Codes (MAC), Collision-resistant hash functions (CRHF), constructions</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>10/19/2020</td>
+<td>Digital Signatures</td>
+<td>Message Digital Signatures, constructions</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>10/21/2020</td>
+<td>Secret Sharing</td>
+<td>XOR secret sharing, Shamir Secret Sharing, Applications</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>10/26/2020</td>
+<td>In Class Midterm (2 hours)</td>
+<td>Covers material up to 10/09, Open book</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>10/28/2020</td>
+<td>Midterm/Homework Solutions</td>
+<td>Solutions from Midterm and selected homework problems</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Blockchains - I</td>
+<td>What are Blockchains, how mining works</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Blockchains - II</td>
+<td>Merkle Tree, Smart Contracts, applications and limitations of Bitcoins</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Blockchains - III</td>
+<td>Other interesting Blockchains and cryptocurrencies, GHOST, DAG based blockchains</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Zero-Knowledge Proofs &ndash; I</td>
+<td>What is zero-knowledge (ZK), notion of simulation, Graph Isomorphism</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Zero-Knowledge Proofs &ndash; II</td>
+<td>Commitment schemes, ZK for any NP statement</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Secure Computation &ndash; I</td>
+<td>Yao's millionaire problem, 1-out-of-2 oblivious transfer</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Secure Computation &ndash; II</td>
+<td>ZK proofs of honesty, 1-out-of-n oblivious transfer, secure computation for small inputs</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Secure Computation &ndash; III</td>
+<td>Yao&rsquo;s garbled circuits</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>No class</td>
+<td>Thanksgiving!</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Additional topics</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>Useful Reading</strong></p>
+<p>Look at previous versions of this course for a list of topics covered + lecture notes:</p>
+<p><strong>Fall 2019:&nbsp;<a href="http://www.cs.cmu.edu/~goyal/f19/15356">Introduction to Cryptography</a></strong></p>
+<p><strong>Spring 2018:&nbsp;<a href="http://www.cs.cmu.edu/~goyal/s18/15503.html">Introduction to Cryptography</a>&nbsp;&nbsp;(15503 and 15827)&nbsp;&nbsp;&nbsp;(lecture notes available online)</strong></p>
+<p>There is no required textbook for the course. Following is some other recommended material for the course:</p>
+<ul>
+<li>Recommended Lecture notes 1:&nbsp;Scribes / Lecture notes by&nbsp;<a href="http://www3.cs.stonybrook.edu/~omkant/CSE594_S17G_Modern_Cryptography.html">Omkant&nbsp;Pandey</a></li>
+<li>Recommended Lecture notes 2: Lecture notes by&nbsp;<a href="http://www.cs.jhu.edu/~abhishek/classes/CS600-642-442-Fall2017/notes.pdf">Abhishek Jain</a></li>
+<li>Other lecture notes:&nbsp;<a href="https://www.cs.cornell.edu/courses/cs4830/2010fa/lecnotes.pdf">Pass-Shelat</a>,&nbsp;<a href="https://cseweb.ucsd.edu/~mihir/papers/gb.pdf">Bellare-Goldwasser</a>&nbsp;</li>
+<li>Katz and Lindell's book:&nbsp;<a href="http://www.amazon.com/Introduction-Cryptography-Chapman-Network-Security/dp/1466570261/ref=sr_1_1?ie=UTF8&amp;qid=1440439512&amp;sr=8-1&amp;keywords=introduction+to+modern+cryptography">Introduction to Modern Cryptography</a>&nbsp;(not free)</li>
+<li>Rosulek's&nbsp;upcoming book:&nbsp;<a href="http://web.engr.oregonstate.edu/~rosulekm/crypto">The Joy of Cryptography</a></li>
+<li>Boneh&nbsp;and&nbsp;Shoup's&nbsp;upcoming book:&nbsp;<a href="https://crypto.stanford.edu/~dabo/cryptobook/">A Graduate Course in Applied Cryptography</a></li>
+</ul>
