@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publications - Vipul Goyal</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2744;
+    --blue: #2563a8;
+    --blue-light: #3b82c4;
+    --accent: #c8102e;
+    --bg: #ffffff;
+    --bg-alt: #f4f6f9;
+    --border: #dde3ec;
+    --text: #1c2333;
+    --text-muted: #5a6474;
+    --text-light: #8a95a3;
+    --link: #1d4ed8;
+    --link-hover: #1e40af;
+    --nav-h: 60px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bg);
+  }
+
+  /* ── Navigation ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 0.2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.82);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.4rem 0.75rem;
+    border-radius: 5px;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+
+  .nav-links a:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+  }
+
+  /* ── Hamburger ── */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+
+  /* ── Main layout ── */
+  main {
+    margin-top: var(--nav-h);
+  }
+
+  section {
+    padding: 4rem 2rem;
+  }
+
+  section:nth-child(even) {
+    background: var(--bg-alt);
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* ── Section headings ── */
+  .section-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 2rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 3px solid var(--blue);
+    display: inline-block;
+  }
+
+  /* ── Hero / About ── */
+  #about {
+    background: linear-gradient(135deg, #f0f4fa 0%, #e8eef6 100%);
+    padding-top: 4.5rem;
+    padding-bottom: 4rem;
+  }
+
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .profile-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 6px 24px rgba(26,39,68,0.18);
+    border: 3px solid #fff;
+  }
+
+  .profile-name {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.15;
+    margin-bottom: 0.4rem;
+  }
+
+  .profile-title {
+    font-size: 1.05rem;
+    color: var(--blue);
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+  }
+
+  .profile-affil {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 1.2rem;
+  }
+
+  .profile-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .profile-contact a {
+    color: var(--link);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .profile-contact a:hover { text-decoration: underline; }
+
+  .profile-about {
+    color: var(--text);
+    font-size: 0.975rem;
+    line-height: 1.75;
+  }
+
+  .profile-about p + p {
+    margin-top: 0.75rem;
+  }
+
+  /* ── Research Interests ── */
+  .interest-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tag {
+    background: var(--navy);
+    color: #fff;
+    padding: 0.35rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .funding-note {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-style: italic;
+    border-left: 3px solid var(--border);
+    padding-left: 1rem;
+  }
+
+  /* ── Publications ── */
+  .year-group {
+    margin-bottom: 2rem;
+  }
+
+  .year-label {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .year-label::after {
+    content: '▾';
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    transition: transform 0.2s;
+  }
+
+  .year-label.collapsed::after {
+    transform: rotate(-90deg);
+  }
+
+  .pub-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .pub-list.hidden {
+    display: none;
+  }
+
+  .pub-item {
+    position: relative;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 3.4rem 1rem 1.2rem;
+    border-left: 4px solid var(--blue);
+    transition: box-shadow 0.15s;
+  }
+
+  #publications section:nth-child(even) .pub-item,
+  .pub-item:hover {
+    box-shadow: 0 2px 10px rgba(37,99,168,0.09);
+  }
+
+  .pub-title {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.4;
+  }
+
+  .pub-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .pub-title a:hover {
+    color: var(--link);
+    text-decoration: underline;
+  }
+
+  .pub-authors {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0.2rem 0;
+  }
+
+  .pub-venue {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--blue);
+  }
+
+  .pub-badge {
+    display: inline-block;
+    background: #fff;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    letter-spacing: 0.03em;
+  }
+
+  .pub-item.is-interactive {
+    cursor: pointer;
+  }
+
+  .pub-item.is-interactive:focus-visible {
+    outline: 2px solid rgba(37,99,168,0.35);
+    outline-offset: 2px;
+  }
+
+  .pub-item.expanded {
+    box-shadow: 0 4px 18px rgba(37,99,168,0.12);
+  }
+
+  .pub-item::after {
+    content: '+';
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--blue);
+    background: #f8fbff;
+  }
+
+  .pub-item.expanded::after {
+    content: '-';
+  }
+
+  .pub-hint {
+    margin: -0.75rem 0 1.5rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-light);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .pub-abstract {
+    margin-top: 0.9rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.93rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  .pub-abstract[hidden] {
+    display: none;
+  }
+
+  .pub-abstract-label {
+    margin-bottom: 0.35rem;
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .publications-layout {
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .publications-content {
+    min-width: 0;
+  }
+
+  .year-nav {
+    position: sticky;
+    top: calc(var(--nav-h) + 1.25rem);
+    align-self: start;
+    max-height: calc(100vh - var(--nav-h) - 2rem);
+    overflow: auto;
+    padding: 0.9rem 0.85rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 8px 22px rgba(26,39,68,0.06);
+  }
+
+  .year-nav-title {
+    margin-bottom: 0.65rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .year-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .year-nav a {
+    display: block;
+    padding: 0.3rem 0.45rem;
+    border-radius: 8px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.84rem;
+    font-weight: 600;
+  }
+
+  .year-nav a:hover {
+    background: var(--bg-alt);
+    color: var(--navy);
+  }
+
+  .year-group {
+    scroll-margin-top: calc(var(--nav-h) + 1rem);
+  }
+
+  /* ── Teaching ── */
+  .course-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .course-item {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 1rem;
+    align-items: start;
+    border-left: 4px solid var(--blue);
+  }
+
+  .course-num {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 0.9rem;
+    min-width: 60px;
+  }
+
+  .course-name {
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+
+  .course-meta {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .course-meta a {
+    color: var(--link);
+    text-decoration: none;
+  }
+  .course-meta a:hover { text-decoration: underline; }
+
+  /* ── Students ── */
+  .students-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .student-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+  }
+
+  .student-card-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--blue);
+    margin-bottom: 0.75rem;
+  }
+
+  .student-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .student-list li {
+    font-size: 0.9rem;
+    color: var(--text);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .student-list li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .student-list a {
+    color: var(--link);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .student-list a:hover { text-decoration: underline; }
+
+  .student-now {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    display: block;
+    margin-top: 0.1rem;
+  }
+
+  .student-years {
+    font-size: 0.78rem;
+    color: var(--text-light);
+  }
+
+  .subsection-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 2rem 0 0.85rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid var(--border);
+  }
+
+  /* ── Program Committees ── */
+  .pc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .pc-item {
+    font-size: 0.875rem;
+    color: var(--text);
+    padding: 0.4rem 0.75rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+
+  /* ── Bio ── */
+  .bio-text {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text);
+    max-width: 800px;
+  }
+
+  .bio-text p + p {
+    margin-top: 1rem;
+  }
+
+  /* ── Awards chip ── */
+  .awards-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 1.25rem 0;
+  }
+
+  .award-chip {
+    background: #fff8e1;
+    border: 1px solid #f0c040;
+    color: #7a5800;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.35rem 0.8rem;
+    border-radius: 20px;
+  }
+
+  /* ── Footer ── */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    font-size: 0.82rem;
+    padding: 1.75rem 2rem;
+  }
+
+  footer a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+  }
+
+  /* ── Utility ── */
+  a { color: var(--link); }
+  a:hover { color: var(--link-hover); }
+
+  .inline-link {
+    color: var(--link);
+    text-decoration: none;
+  }
+  .inline-link:hover { text-decoration: underline; }
+
+  /* ── Responsive ── */
+  @media (max-width: 720px) {
+    .profile-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .profile-photo {
+      width: 150px;
+      height: 150px;
+    }
+
+    .profile-name {
+      font-size: 1.75rem;
+    }
+
+    .publications-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .year-nav {
+      position: static;
+      padding: 0;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      overflow-x: auto;
+    }
+
+    .year-nav-list {
+      flex-direction: row;
+      gap: 0.45rem;
+      padding-bottom: 0.2rem;
+    }
+
+    .year-nav a {
+      white-space: nowrap;
+      background: #fff;
+      border: 1px solid var(--border);
+    }
+
+    .nav-links {
+      display: none;
+      position: fixed;
+      top: var(--nav-h);
+      left: 0; right: 0;
+      background: var(--navy);
+      flex-direction: column;
+      padding: 1rem;
+      gap: 0.25rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .nav-links.open {
+      display: flex;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 0.6rem 0.75rem;
+    }
+
+    .nav-toggle {
+      display: flex;
+    }
+
+    .students-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .course-item {
+      grid-template-columns: 1fr;
+    }
+
+    section {
+      padding: 2.5rem 1.25rem;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ═══════════ Navigation ═══════════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">Vipul Goyal</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#research">Research</a></li>
+      <li><a href="index.html#teaching">Teaching</a></li>
+      <li><a href="index.html#students">Students</a></li>
+      <li><a href="index.html#service">Service</a></li>
+      <li><a href="index.html#bio">Bio</a></li>
+      <li><a href="publications.html" style="color:#fff;background:rgba(255,255,255,0.15);">Publications</a></li>
+    </ul>
+    <div class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<section id="publications">
+  <div class="container">
+    <h2 class="section-title">Publications</h2>
+
+    <div class="publications-layout">
+      <aside class="year-nav" aria-label="Jump to publication year">
+        <div class="year-nav-title">Jump to year</div>
+        <ul class="year-nav-list">
+          <li><a href="#year-2026">2026</a></li>
+          <li><a href="#year-2025">2025</a></li>
+          <li><a href="#year-2024">2024</a></li>
+          <li><a href="#year-2023">2023</a></li>
+          <li><a href="#year-2022">2022</a></li>
+          <li><a href="#year-2021">2021</a></li>
+          <li><a href="#year-2020">2020</a></li>
+          <li><a href="#year-2019">2019</a></li>
+          <li><a href="#year-2018">2018</a></li>
+          <li><a href="#year-2017">2017</a></li>
+          <li><a href="#year-2016">2016</a></li>
+          <li><a href="#year-2015">2015</a></li>
+          <li><a href="#year-2014">2014</a></li>
+          <li><a href="#year-2013">2013</a></li>
+          <li><a href="#year-2012">2012</a></li>
+          <li><a href="#year-2011-earlier">2011+</a></li>
+        </ul>
+      </aside>
+
+      <div class="publications-content">
+
+    <!-- 2026 -->
+    <div class="year-group" id="year-2026">
+      <div class="year-label" onclick="toggleYear(this)">2026</div>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2025/1826">Proofs of No Intrusion</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Justin Raizes</div>
+          <div class="pub-venue">Eurocrypt 2026</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2025/1197">How to Copy-Protect All Puncturable Functionalities Without Conjectures: A Unified Solution to Quantum Protection</a>
+          </div>
+          <div class="pub-authors">Alper Cakan, Vipul Goyal</div>
+          <div class="pub-venue">Eurocrypt 2026</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2025/1980">Traceable Secret Sharing Revisited</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Abhishek Jain, Aditi Partap</div>
+          <div class="pub-venue">Eurocrypt 2026</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2025 -->
+    <div class="year-group" id="year-2025">
+      <div class="year-label" onclick="toggleYear(this)">2025</div>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2025/1595">Round-Efficient Composable Two-Party Quantum Computation</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Xiao Liang, Omkant Pandey, Yuhao Tang, Takashi Yamakawa</div>
+          <div class="pub-venue">Asiacrypt 2025</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2025/726">Public-Key Quantum Fire and Key-Fire From Classical Oracles</a>
+          </div>
+          <div class="pub-authors">Alper Cakan, Vipul Goyal, Omri Shmueli</div>
+          <div class="pub-venue">QCrypt 2025 <span class="pub-badge">Oral Presentation</span></div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2024/1876.pdf">Unbounded Post-Challenge Leakage-Resilient Encryption and More</a>
+          </div>
+          <div class="pub-authors">Alper Cakan, Vipul Goyal</div>
+          <div class="pub-venue">QCrypt 2025 <span class="pub-badge">Oral Presentation</span></div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2025/508">Towards Building Scalable Constant-Round MPC from Minimal Assumptions</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Junru Li, Rafail Ostrovsky, Yifan Song</div>
+          <div class="pub-venue">Crypto 2025</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://cic.iacr.org/p/2/1/5">Unconditional Quantum Cryptography with a Bounded Number of Keys</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Giulio Malavolta, Bhaskar Roberts</div>
+          <div class="pub-venue">IACR Communications in Cryptology 2025</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2023/1640">Quantum Key Leasing for PKE and FHE with a Classical Lessor</a>
+          </div>
+          <div class="pub-authors">Orestis Chardouvelis, Vipul Goyal, Aayush Jain, Jiahui Liu</div>
+          <div class="pub-venue">Eurocrypt 2025 &middot; QCrypt 2024 <span class="pub-badge">Oral Presentation</span></div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2024/1832">How to Delete Without a Trace: Certified Deniability in a Quantum World</a>
+          </div>
+          <div class="pub-authors">Alper Cakan, Vipul Goyal, Justin Raizes</div>
+          <div class="pub-venue">QIP 2025 <span class="pub-badge">Oral Presentation</span></div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2024/1822">Anonymous Public-key Quantum Money and Universally Verifiable Quantum Voting</a>
+          </div>
+          <div class="pub-authors">Alper Cakan, Vipul Goyal, Takashi Yamakawa</div>
+          <div class="pub-venue">QIP 2025 <span class="pub-badge">Oral Presentation</span> &middot; QCrypt 2025 <span class="pub-badge">Oral Presentation</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2024 -->
+    <div class="year-group" id="year-2024">
+      <div class="year-label" onclick="toggleYear(this)">2024</div>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2023/410">Unbounded Leakage-Resilience and Leakage-Detection in a Quantum World</a>
+          </div>
+          <div class="pub-authors">Alper Cakan, Vipul Goyal, Chen-Da Liu-Zhang, Joao Ribeiro</div>
+          <div class="pub-venue">TCC 2024 &middot; TQC 2024 <span class="pub-badge">Oral Presentation</span></div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2023/1841">Unclonable Cryptography with Unbounded Collusions and Impossibility of Hyperefficient Shadow Tomography</a>
+          </div>
+          <div class="pub-authors">Alper Cakan, Vipul Goyal</div>
+          <div class="pub-venue">TCC 2024 &middot; TQC 2025 <span class="pub-badge">Oral Presentation</span> &middot; QCrypt 2025 <span class="pub-badge">Oral Presentation</span></div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2023/1538">Unclonable Commitments and Proofs</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Giulio Malavolta, Justin Raizes</div>
+          <div class="pub-venue">TCC 2024</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2024/335">Split-State Non-Malleable Codes and Secret Sharing for Quantum Messages</a>
+          </div>
+          <div class="pub-authors">Naresh Goud Boddu, Vipul Goyal, Rahul Jain, Joao Ribeiro</div>
+          <div class="pub-venue">TCC 2024 &middot; QCrypt 2023 &middot; IEEE Trans. on Information Theory</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2024/716">Unclonable Secret Sharing</a>
+          </div>
+          <div class="pub-authors">Prabhanjan Ananth, Vipul Goyal, Jiahui Liu, Qipeng Liu</div>
+          <div class="pub-venue">Asiacrypt 2024</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2024/1466">Dishonest Majority Constant-Round MPC with Linear Communication from DDH</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Junru Li, Ankit Kumar Misra, Rafail Ostrovsky, Yifan Song, Chenkai Weng</div>
+          <div class="pub-venue">Asiacrypt 2024</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2024/207">NIZKs with Maliciously Chosen CRS: Subversion Advice-ZK and Accountable Soundness</a>
+          </div>
+          <div class="pub-authors">Prabhanjan Ananth, Gilad Asharov, Vipul Goyal, Hadar Kaner, Pratik Soni, Brent Waters</div>
+          <div class="pub-venue">SCN 2024 &middot; IACR Journal of Cryptology 2025</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2024/243">Towards Achieving Asynchronous MPC with Linear Communication and Optimal Resilience</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Chen-Da Liu-Zhang, Yifan Song</div>
+          <div class="pub-venue">Crypto 2024</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2023/265">Software with Certified Deletion</a>
+          </div>
+          <div class="pub-authors">James Bartusek, Vipul Goyal, Dakshita Khurana, Giulio Malavolta, Justin Raizes, Bhaskar Roberts</div>
+          <div class="pub-venue">Eurocrypt 2024</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2023 -->
+    <div class="year-group" id="year-2023">
+      <div class="year-label" onclick="toggleYear(this)">2023</div>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2023/827">On Concurrent Multi-Party Quantum Computation</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Xiao Liang, Giulio Malavolta</div>
+          <div class="pub-venue">Crypto 2023 &middot; QCrypt 2023</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2023/1006">Reusable Secure Computation in the Plain Model</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Akshayaram Srinivasan, Mingyuan Wang</div>
+          <div class="pub-venue">Crypto 2023</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2023/307">SuperPack: Dishonest Majority MPC with Constant Online Communication</a>
+          </div>
+          <div class="pub-authors">Daniel Escudero, Vipul Goyal, Antigoni Polychroniadou, Yifan Song, Chenkai Weng</div>
+          <div class="pub-venue">Eurocrypt 2023</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2023/613">Computational Quantum Secret Sharing</a>
+          </div>
+          <div class="pub-authors">Alper Cakan, Vipul Goyal, Chen-Da Liu-Zhang, Joao Ribeiro</div>
+          <div class="pub-venue">TQC 2023</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2023/704">Asymmetric Multi-Party Computation</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Chen-Da Liu-Zhang, Rafail Ostrovsky</div>
+          <div class="pub-venue">ITC 2023</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2022/1583">Asynchronous Multi-Party Quantum Computation</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Chen-Da Liu-Zhang, Justin Raizes, Joao Ribeiro</div>
+          <div class="pub-venue">ITCS 2023</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2022 -->
+    <div class="year-group" id="year-2022">
+      <div class="year-label" onclick="toggleYear(this)">2022</div>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2022/1316">TurboPack: Honest Majority MPC with Constant Online Communication</a>
+          </div>
+          <div class="pub-authors">Daniel Escudero, Vipul Goyal, Antigoni Polychroniadou, Yifan Song</div>
+          <div class="pub-venue">ACM CCS 2022</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2022/831">Sharing Transformation and Dishonest Majority MPC with Packed Secret Sharing</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Antigoni Polychroniadou, Yifan Song</div>
+          <div class="pub-venue">Crypto 2022</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2022/799">Tight Bounds on the Randomness Complexity of Secure Multiparty Computation</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Yuval Ishai, Yifan Song</div>
+          <div class="pub-venue">Crypto 2022</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2022/255">Round-Optimal Byzantine Agreement</a>
+          </div>
+          <div class="pub-authors">Diana Ghinea, Vipul Goyal, Chen-Da Liu-Zhang</div>
+          <div class="pub-venue">Eurocrypt 2022</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2022/250.pdf">Private Circuits with Quasilinear Randomness</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Yuval Ishai, Yifan Song</div>
+          <div class="pub-venue">Eurocrypt 2022</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2022/035">Time-Traveling Simulators Using Blockchains and Their Applications</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Justin Raizes, Pratik Soni</div>
+          <div class="pub-venue">ITCS 2022</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2021/1503">Interaction Preserving Compilers for Secure Computation</a>
+          </div>
+          <div class="pub-authors">Nico Dottling, Vipul Goyal, Giulio Malavolta, Justin Raizes</div>
+          <div class="pub-venue">ITCS 2022</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2020/504">Storing and Retrieving Secrets on a Blockchain</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Abhiram Kothapalli, Elisaweta Masserova, Bryan Parno, Yifan Song</div>
+          <div class="pub-venue">PKC 2022</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2021 -->
+    <div class="year-group" id="year-2021">
+      <div class="year-label" onclick="toggleYear(this)">2021</div>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2021/1233">Blockchains Enable Non-Interactive MPC</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Elisaweta Masserova, Bryan Parno, Yifan Song</div>
+          <div class="pub-venue">TCC 2021</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2021/1230">Two-Round Maliciously Secure Computation with Super-Polynomial Simulation</a>
+          </div>
+          <div class="pub-authors">Amit Agarwal, James Bartusek, Vipul Goyal, Dakshita Khurana, Giulio Malavolta</div>
+          <div class="pub-venue">TCC 2021</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2021/1433">Oblivious Transfer from Trapdoor Permutations in Minimal Rounds</a>
+          </div>
+          <div class="pub-authors">Arka Rai Choudhuri, Michele Ciampi, Vipul Goyal, Abhishek Jain, Rafail Ostrovsky</div>
+          <div class="pub-venue">TCC 2021</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2021/834">Unconditional Communication-Efficient MPC via Hall's Marriage Theorem</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Antigoni Polychroniadou, Yifan Song</div>
+          <div class="pub-venue">Crypto 2021</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2021/833">ATLAS: Efficient and Scalable MPC in the Honest Majority Setting</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Hanjun Li, Rafail Ostrovsky, Antigoni Polychroniadou, Yifan Song</div>
+          <div class="pub-venue">Crypto 2021</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2021/871">Traceable Secret Sharing and Applications</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Yifan Song, Akshayaram Srinivasan</div>
+          <div class="pub-venue">Crypto 2021</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2021/416">Cryptocurrencies with Security Policies and Two-Factor Authentication</a>
+          </div>
+          <div class="pub-authors">Florian Breuer, Vipul Goyal, Giulio Malavolta</div>
+          <div class="pub-venue">EuroS&amp;P 2021</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://arxiv.org/abs/2005.12904">Post-Quantum MPC in Constant Rounds</a>
+          </div>
+          <div class="pub-authors">Amit Agarwal, James Bartusek, Vipul Goyal, Dakshita Khurana, Giulio Malavolta</div>
+          <div class="pub-venue">Eurocrypt 2021</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2020/157">Multi-Source Non-Malleable Extractors and Applications</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Akshayaram Srinivasan, Chenzhi Zhu</div>
+          <div class="pub-venue">Eurocrypt 2021</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2021/1090">Towards Accountability in CRS Generation</a>
+          </div>
+          <div class="pub-authors">Prabhanjan Ananth, Gilad Asharov, Hila Dahari, Vipul Goyal</div>
+          <div class="pub-venue">Eurocrypt 2021</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2021/308">Threshold Garbled Circuits and Ad Hoc Secure Computation</a>
+          </div>
+          <div class="pub-authors">Michele Ciampi, Vipul Goyal, Rafail Ostrovsky</div>
+          <div class="pub-venue">Eurocrypt 2021</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://fc21.ifca.ai/papers/98.pdf">Instant Block Confirmation in the Sleepy Model</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Hanjun Li, Justin Raizes</div>
+          <div class="pub-venue">Financial Cryptography 2021</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2020 -->
+    <div class="year-group" id="year-2020">
+      <div class="year-label" onclick="toggleYear(this)">2020</div>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2019/216">Round Optimal Secure Multiparty Computation from Minimal Assumptions</a>
+          </div>
+          <div class="pub-authors">Arka Rai Choudhuri, Michele Ciampi, Vipul Goyal, Abhishek Jain, Rafail Ostrovsky</div>
+          <div class="pub-venue">TCC 2020</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2020/478">Leakage-Resilient Extractors and Secret-Sharing against Bounded Collusion Protocols</a>
+          </div>
+          <div class="pub-authors">Eshan Chattopadhyay, Jesse Goodman, Vipul Goyal, Xin Li</div>
+          <div class="pub-venue">FOCS 2020</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2020/066">Talek: Private Group Messaging with Hidden Access Patterns</a>
+          </div>
+          <div class="pub-authors">Raymond Cheng, William Scott, Elisaweta Masserova, Irene Zhang, Vipul Goyal, Thomas Anderson, Arvind Krishnamurthy, Bryan Parno</div>
+          <div class="pub-venue">ACSAC 2020</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">Guaranteed Output Delivery Comes Free in Honest-Majority MPC</div>
+          <div class="pub-authors">Vipul Goyal, Yifan Song, Chenzhi Zhu</div>
+          <div class="pub-venue">Crypto 2020</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2019/1450">Extractors for Adversarial Sources via Extremal Hypergraphs</a>
+          </div>
+          <div class="pub-authors">Eshan Chattopadhyay, Jesse Goodman, Vipul Goyal, Xin Li</div>
+          <div class="pub-venue">STOC 2020</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2020/235">Statistical Zaps and New Oblivious Transfer Protocols</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Giulio Malavolta, Abhishek Jain, Zhengzhong Jin</div>
+          <div class="pub-venue">Eurocrypt 2020</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2019 -->
+    <div class="year-group" id="year-2019">
+      <div class="year-label" onclick="toggleYear(this)">2019</div>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2019/1195">Non-Malleable Commitments using Goldreich-Levin List Decoding</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Silas Richelson</div>
+          <div class="pub-venue">FOCS 2019</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2019/1353">Laconic Conditional Disclosure of Secrets and Applications</a>
+          </div>
+          <div class="pub-authors">Nico Dottling, Sanjam Garg, Vipul Goyal, Giulio Malavolta</div>
+          <div class="pub-venue">FOCS 2019</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2019/646">Communication-Efficient Unconditional MPC with Guaranteed Output Delivery</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Yanyi Liu, Yifan Song</div>
+          <div class="pub-venue">Crypto 2019</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2019/626">Simultaneous Amplification: The Case of Non-Interactive Zero-Knowledge</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Aayush Jain, Amit Sahai</div>
+          <div class="pub-venue">Crypto 2019</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2019/253">Founding Secure Computation on Blockchains</a>
+          </div>
+          <div class="pub-authors">Arka Rai Choudhuri, Vipul Goyal, Abhishek Jain</div>
+          <div class="pub-venue">Eurocrypt 2019</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2019/240">Correlated-Source Extractors and Cryptography for Correlated Random Tapes</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Yifan Song</div>
+          <div class="pub-venue">Eurocrypt 2019</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2018 -->
+    <div class="year-group" id="year-2018">
+      <div class="year-label" onclick="toggleYear(this)">2018</div>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2017/1088">Promise Zero Knowledge and its Applications to Round Optimal MPC</a>
+          </div>
+          <div class="pub-authors">Saikrishna Badrinarayanan, Vipul Goyal, Abhishek Jain, Yael Tauman Kalai, Dakshita Khurana, Amit Sahai</div>
+          <div class="pub-venue">Crypto 2018</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2018/750.pdf">Non-Malleable Secret Sharing for General Access Structures</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Ashutosh Kumar</div>
+          <div class="pub-venue">Crypto 2018</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2018/316">Non-Malleable Secret Sharing</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Ashutosh Kumar</div>
+          <div class="pub-venue">STOC 2018</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2018/167.pdf">On the Existence of Three Round Zero-Knowledge Proofs</a>
+          </div>
+          <div class="pub-authors">Nils Fleischhacker, Vipul Goyal, Abhishek Jain</div>
+          <div class="pub-venue">Eurocrypt 2018</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2017 -->
+    <div class="year-group" id="year-2017">
+      <div class="year-label" onclick="toggleYear(this)">2017</div>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2017/935">Overcoming Cryptographic Impossibility Results using Blockchains</a>
+          </div>
+          <div class="pub-authors">Rishab Goyal, Vipul Goyal</div>
+          <div class="pub-venue">TCC 2017</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="https://eprint.iacr.org/2017/597">Round Optimal Concurrent MPC via Strong Simulation</a>
+          </div>
+          <div class="pub-authors">Saikrishna Badrinarayanan, Vipul Goyal, Abhishek Jain, Dakshita Khurana, Amit Sahai</div>
+          <div class="pub-venue">TCC 2017</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">HOP: Hardware makes Obfuscation Practical</div>
+          <div class="pub-authors">Kartik Nayak, Christopher W. Fletcher, Ling Ren, Nishanth Chandran, Satyanarayana V. Lokam, Elaine Shi, Vipul Goyal</div>
+          <div class="pub-venue">NDSS 2017</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">Hierarchical Functional Encryption</div>
+          <div class="pub-authors">Zvika Brakerski, Nishanth Chandran, Aayush Jain, Vipul Goyal, Amit Sahai, Gil Segev</div>
+          <div class="pub-venue">ITCS 2017</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2016 -->
+    <div class="year-group" id="year-2016">
+      <div class="year-label" onclick="toggleYear(this)">2016</div>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <div class="pub-title">Breaking the Three Round Barrier for Non-Malleable Commitments</div>
+          <div class="pub-authors">Vipul Goyal, Dakshita Khurana, Amit Sahai</div>
+          <div class="pub-venue">FOCS 2016</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">Bounded-Communication Leakage Resilience via Parity-Resilient Circuits</div>
+          <div class="pub-authors">Vipul Goyal, Yuval Ishai, Hemanta K. Maji, Amit Sahai, Alexander Sherstov</div>
+          <div class="pub-venue">FOCS 2016</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2015/1178">Textbook Non-Malleable Commitments</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Omkant Pandey, Silas Richelson</div>
+          <div class="pub-venue">STOC 2016</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">Non-Malleable Extractors and Codes, with their Many Tampered Extensions</div>
+          <div class="pub-authors">Eshan Chattopadhyay, Vipul Goyal, Xin Li</div>
+          <div class="pub-venue">STOC 2016</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2016/629">Verifiable Functional Encryption</a>
+          </div>
+          <div class="pub-authors">Saikrishna Badrinarayanan, Vipul Goyal, Aayush Jain, Amit Sahai</div>
+          <div class="pub-venue">Asiacrypt 2016</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2015/1113">Unbounded Message Multi-Input Functional Encryption</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Aayush Jain, Adam O'Neill</div>
+          <div class="pub-venue">Asiacrypt 2016</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2015/1090">Do Distributed Differentially-Private Protocols Require Oblivious Transfer?</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Dakshita Khurana, Ilya Mironov, Omkant Pandey, Amit Sahai</div>
+          <div class="pub-venue">ICALP 2016</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2015/129">Block-wise Non-Malleable Codes</a>
+          </div>
+          <div class="pub-authors">Nishanth Chandran, Vipul Goyal, Pratyay Mukherjee, Omkant Pandey, Jalaj Upadhyay</div>
+          <div class="pub-venue">ICALP 2016</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2015 -->
+    <div class="year-group" id="year-2015">
+      <div class="year-label" onclick="toggleYear(this)">2015</div>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2015/1107">Concurrent Secure Computation via Non-Black Box Simulation</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Divya Gupta, Amit Sahai</div>
+          <div class="pub-venue">Crypto 2015</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2015/559">Concurrent Secure Computation with Optimal Query Complexity</a>
+          </div>
+          <div class="pub-authors">Ran Canetti, Vipul Goyal, Abhishek Jain</div>
+          <div class="pub-venue">Crypto 2015</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">Fast Non-Malleable Commitments</div>
+          <div class="pub-authors">Hai Brenner, Vipul Goyal, Silas Richelson, Alon Rosen, Margarita Vald</div>
+          <div class="pub-venue">ACM CCS 2015</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2013/729.pdf">Functional Encryption for Randomized Functionalities</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Abhishek Jain, Venkata Koppula, Amit Sahai</div>
+          <div class="pub-venue">TCC 2015</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2012/652">Round-Efficient Concurrently Composable Secure Computation via a Robust Extraction Lemma</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Huijia Lin, Omkant Pandey, Rafael Pass, Amit Sahai</div>
+          <div class="pub-venue">TCC 2015</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2014 -->
+    <div class="year-group" id="year-2014">
+      <div class="year-label" onclick="toggleYear(this)">2014</div>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2014/586">An Algebraic Approach to Non-Malleability</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Silas Richelson, Alon Rosen, Margarita Vald</div>
+          <div class="pub-venue">FOCS 2014 &middot; SICOMP 2021</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2014/660">Interactive Proofs under Continual Memory Leakage</a>
+          </div>
+          <div class="pub-authors">Prabhanjan Ananth, Vipul Goyal, Omkant Pandey</div>
+          <div class="pub-venue">Crypto 2014</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2014/390">Black-Box Non-Black-Box Zero Knowledge</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Rafail Ostrovsky, Alessandra Scafuro, Ivan Visconti</div>
+          <div class="pub-venue">STOC 2014</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2013/727.pdf">Multi-Input Functional Encryption</a>
+          </div>
+          <div class="pub-authors">Shafi Goldwasser, Vipul Goyal, Abhishek Jain, Amit Sahai</div>
+          <div class="pub-venue">Eurocrypt 2014</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2013/827">Lower Bounds in the Hardware Token Model</a>
+          </div>
+          <div class="pub-authors">Shashank Agrawal, Prabhanjan Ananth, Vipul Goyal, Manoj Prabhakaran, Alon Rosen</div>
+          <div class="pub-venue">TCC 2014</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2013 -->
+    <div class="year-group" id="year-2013">
+      <div class="year-label" onclick="toggleYear(this)">2013</div>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2015/420">What Information is Leaked under Concurrent Composition?</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Divya Gupta, Abhishek Jain</div>
+          <div class="pub-venue">Crypto 2013 &middot; Invited to Journal of Cryptology</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">Accuracy-Privacy Tradeoffs for Two-party Differentially-Private Protocols</div>
+          <div class="pub-authors">Vipul Goyal, Ilya Mironov, Omkant Pandey, Amit Sahai</div>
+          <div class="pub-venue">Crypto 2013</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">Non-Black-Box Simulation in the Fully Concurrent Setting</div>
+          <div class="pub-authors">Vipul Goyal</div>
+          <div class="pub-venue">STOC 2013</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2015/439">On Concurrently Secure Computation in the Multiple Ideal Query Model</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Abhishek Jain</div>
+          <div class="pub-venue">Eurocrypt 2013</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2012/721.pdf">On the (In)security of Fischlin's Paradigm</a>
+          </div>
+          <div class="pub-authors">Prabhanjan Ananth, Raghav Bhaskar, Vipul Goyal, Vanishree Rao</div>
+          <div class="pub-venue">TCC 2013</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2012/279.pdf">Concurrent Zero Knowledge in the Bounded Player Model</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Abhishek Jain, Rafail Ostrovsky, Silas Richelson, Ivan Visconti</div>
+          <div class="pub-venue">TCC 2013 &middot; Asiacrypt 2013</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2012 -->
+    <div class="year-group" id="year-2012">
+      <div class="year-label" onclick="toggleYear(this)">2012</div>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <div class="pub-title">Positive Results for Concurrently Secure Computation in the Plain Model</div>
+          <div class="pub-authors">Vipul Goyal</div>
+          <div class="pub-venue">FOCS 2012</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">Constructing Non-Malleable Commitments: A Black-Box Approach</div>
+          <div class="pub-authors">Vipul Goyal, Chen Lee, Rafail Ostrovsky, Ivan Visconti</div>
+          <div class="pub-venue">FOCS 2012</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2012/555">New Impossibility Results for Concurrent Composition and a Non-Interactive Completeness Theorem for Secure Computation</a>
+          </div>
+          <div class="pub-authors">Shweta Agrawal, Vipul Goyal, Abhishek Jain, Manoj Prabhakaran, Amit Sahai</div>
+          <div class="pub-venue">Crypto 2012</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">Concurrently Secure Computation in Constant Rounds</div>
+          <div class="pub-authors">Sanjam Garg, Vipul Goyal, Abhishek Jain, Amit Sahai</div>
+          <div class="pub-venue">Eurocrypt 2012</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2011 and earlier -->
+    <div class="year-group" id="year-2011-earlier">
+      <div class="year-label" onclick="toggleYear(this)">2011 and earlier</div>
+      <div class="pub-list">
+
+        <div class="pub-item">
+          <div class="pub-title">Stateless Cryptographic Protocols</div>
+          <div class="pub-authors">Vipul Goyal, Hemanta K. Maji</div>
+          <div class="pub-venue">FOCS 2011</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2010/275.pdf">Position-Based Quantum Cryptography: Impossibility and Constructions</a>
+          </div>
+          <div class="pub-authors">Harry Buhrman, Nishanth Chandran, Serge Fehr, Ran Gelles, Vipul Goyal, Rafail Ostrovsky, Christian Schaffner</div>
+          <div class="pub-venue">Crypto 2011 &middot; QIP 2011 (plenary) &middot; SICOMP 2014</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">Constant Round Non-Malleable Protocols using One Way Functions</div>
+          <div class="pub-authors">Vipul Goyal</div>
+          <div class="pub-venue">STOC 2011</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2010/153">Founding Cryptography on Tamper-Proof Hardware Tokens</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Yuval Ishai, Amit Sahai, Ramarathnam Venkatesan, Akshay Wadia</div>
+          <div class="pub-venue">TCC 2010</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2008/545.pdf">Resolving the Simultaneous Resettability Conjecture</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Amit Sahai</div>
+          <div class="pub-venue">FOCS 2009</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">Efficient Two Party and Multi Party Computation against Covert Adversaries</div>
+          <div class="pub-authors">Vipul Goyal, Payman Mohassel, Adam Smith</div>
+          <div class="pub-venue">Eurocrypt 2008</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="http://eprint.iacr.org/2007/334.pdf">New Constructions for UC Secure Computation using Tamper-proof Hardware</a>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Yuval Ishai, Amit Sahai, Ramarathnam Venkatesan, Akshay Wadia</div>
+          <div class="pub-venue">Eurocrypt 2008</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">Covert Multi-Party Computation</div>
+          <div class="pub-authors">Vipul Goyal, Yuval Ishai, Amit Sahai, Ramarathnam Venkatesan, Akshay Wadia</div>
+          <div class="pub-venue">FOCS 2007</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">Reducing Trust in the PKG in Identity Based Cryptosystems</div>
+          <div class="pub-authors">Vipul Goyal</div>
+          <div class="pub-venue">Crypto 2007</div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-title">
+            <a href="abe.pdf">Attribute-Based Encryption for Fine-Grained Access Control of Encrypted Data</a>
+            <span class="pub-badge">Test of Time Award</span>
+          </div>
+          <div class="pub-authors">Vipul Goyal, Omkant Pandey, Amit Sahai, Brent Waters</div>
+          <div class="pub-venue">ACM CCS 2006 &middot; <em>Winner of 2016 ACM CCS Test of Time Award</em></div>
+        </div>
+
+      </div>
+    </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<!-- ═══════════ Footer ═══════════ -->
+<footer>
+  <p>Page redesigned using Claude and Codex. <a href="index-old.html">Here is my old webpage.</a></p>
+</footer>
+
+<script src="publications-abstracts.js"></script>
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  function toggleYear(el) {
+    el.classList.toggle('collapsed');
+    const list = el.nextElementSibling;
+    list.classList.toggle('hidden');
+  }
+
+  function normalizeTitle(text) {
+    return text.replace(/\s+/g, ' ').trim();
+  }
+
+  function toggleAbstract(item) {
+    const abstract = item.querySelector('.pub-abstract');
+    if (!abstract) return;
+
+    const expanded = abstract.hidden;
+    abstract.hidden = !expanded;
+    item.classList.toggle('expanded', expanded);
+    item.setAttribute('aria-expanded', String(expanded));
+  }
+
+  const abstracts = window.publicationAbstracts || {};
+
+  document.querySelectorAll('.pub-item').forEach((item) => {
+    const titleNode = item.querySelector('.pub-title');
+    if (!titleNode || item.querySelector('.pub-abstract')) return;
+
+    const title = normalizeTitle(titleNode.textContent);
+    const abstractText = abstracts[title] || 'Abstract unavailable for this entry.';
+    const venue = item.querySelector('.pub-venue');
+
+    const abstract = document.createElement('div');
+    abstract.className = 'pub-abstract';
+    abstract.hidden = true;
+
+    const label = document.createElement('div');
+    label.className = 'pub-abstract-label';
+    label.textContent = 'Abstract';
+
+    const copy = document.createElement('div');
+    copy.textContent = abstractText;
+
+    abstract.appendChild(label);
+    abstract.appendChild(copy);
+
+    item.classList.add('is-interactive');
+    item.tabIndex = 0;
+    item.setAttribute('aria-expanded', 'false');
+
+    if (venue) {
+      venue.insertAdjacentElement('afterend', abstract);
+    } else {
+      item.appendChild(abstract);
+    }
+
+    item.addEventListener('click', (event) => {
+      if (event.target.closest('a')) return;
+      toggleAbstract(item);
+    });
+
+    item.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      if (event.target.closest('a')) return;
+      event.preventDefault();
+      toggleAbstract(item);
+    });
+  });
+</script>
+
+</body>
+</html>
